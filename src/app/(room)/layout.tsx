@@ -1,13 +1,8 @@
-import {Inter} from 'next/font/google'
-import {ReactNode} from "react";
-import {redirect} from "next/navigation";
-import {cookies} from "next/headers";
+import {cookies} from 'next/headers'
+import {redirect} from 'next/navigation'
+import {ReactNode} from 'react'
 
-export default function RoomLayout({
-                                     children,
-                                   }: {
-  children: ReactNode
-}) {
+export default function RoomLayout({children}: {children: ReactNode}) {
   const accessToken = cookies().get('accessToken')?.value
 
   if (!accessToken) {

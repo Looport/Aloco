@@ -1,4 +1,5 @@
 import {Surreal} from "surrealdb.js";
+
 import {Message} from "@/room/interfaces/message.interface";
 
 export const createMessageMutation = async ({
@@ -15,13 +16,13 @@ export const createMessageMutation = async ({
   const db = new Surreal()
 
   await db.connect('http://127.0.0.1:8000/rpc', {
-    namespace: 'test',
     database: 'test',
+    namespace: 'test',
   });
 
   await db.authenticate(accessToken)
 
-  const [message] = await db.query<(Message & Record<any, any>)[]>(
+  const [message] = await db.query<Array<Message & Record<any, any>>>(
     `
       CREATE message CONTENT {
         message: $message,
@@ -29,7 +30,7 @@ export const createMessageMutation = async ({
         user: $userId,
       }
       `,
-    {roomId, userId, message: text}
+    {message: text, roomId, userId}
   );
 
   return message

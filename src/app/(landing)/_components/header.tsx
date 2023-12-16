@@ -1,5 +1,6 @@
 import {cookies} from "next/headers";
 import Link from "next/link";
+
 import {queryUser} from "@/user/queries/user.query";
 
 export const Header = async () => {

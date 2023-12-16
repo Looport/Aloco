@@ -1,5 +1,6 @@
 import {cookies} from "next/headers";
 import {redirect} from "next/navigation";
+
 import {signupMutation} from "@/user/mutations/signup.mutation";
 
 export default function SignUpPage() {

@@ -1,4 +1,5 @@
 import {Surreal} from "surrealdb.js";
+
 import {SignupPayload} from "@/user/interfaces/signup-payload.interface";
 
 export const signupMutation = async ({
@@ -8,14 +9,14 @@ export const signupMutation = async ({
   const db = new Surreal()
 
   await db.connect('http://127.0.0.1:8000/rpc', {
-    namespace: 'test',
     database: 'test',
+    namespace: 'test',
   });
 
   const accessToken = await db.signup({
-    scope: 'user',
     email,
-    password
+    password,
+    scope: 'user'
   })
 
   await db.close()

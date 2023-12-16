@@ -1,7 +1,8 @@
 "use server"
 
-import {redirect} from "next/navigation";
 import {cookies} from "next/headers";
+import {redirect} from "next/navigation";
+
 import {createRoomMutation} from "@/room/mutations/create-room.mutation";
 
 export const createRoomAction = async () => {
