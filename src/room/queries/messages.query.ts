@@ -1,9 +1,12 @@
-import {Surreal} from "surrealdb.js";
+import {Surreal} from 'surrealdb.js'
 
-import {Message} from "@/room/interfaces/message.interface";
+import {Message} from '@/room/interfaces/message.interface'
 
-export const queryMessages = async ({roomId, accessToken}: {
-  roomId: string,
+export const queryMessages = async ({
+  roomId,
+  accessToken,
+}: {
+  roomId: string
   accessToken: string
 }): Promise<Message[]> => {
   const db = new Surreal()
@@ -11,7 +14,7 @@ export const queryMessages = async ({roomId, accessToken}: {
   await db.connect('http://127.0.0.1:8000/rpc', {
     database: 'test',
     namespace: 'test',
-  });
+  })
 
   await db.authenticate(accessToken)
 
@@ -19,7 +22,8 @@ export const queryMessages = async ({roomId, accessToken}: {
     `
     SELECT *, user.* FROM message WHERE room = $roomId ORDER BY createdAt ASC;
     `,
-    {roomId})
+    {roomId}
+  )
 
   return messages
 }

@@ -1,24 +1,31 @@
-"use client"
+'use client'
 
-import {useEffect, useReducer} from "react";
+import {useEffect, useReducer} from 'react'
 
-import {Message} from "@/room/interfaces/message.interface";
-import {subscribeToMessages} from "@/room/subscriptions/messages.subscription";
+import {Message} from '@/room/interfaces/message.interface'
+import {subscribeToMessages} from '@/room/subscriptions/messages.subscription'
 
-export const Messages = ({roomId, accessToken, defaultMessages}: {
-  accessToken: string,
-  roomId: string,
+export const Messages = ({
+  roomId,
+  accessToken,
+  defaultMessages,
+}: {
+  accessToken: string
+  roomId: string
   defaultMessages: Message[]
 }) => {
   const [messages, dispatch] = useReducer(
-    (state: Message[], action: Message) => ([...state, action]),
-    defaultMessages)
+    (state: Message[], action: Message) => [...state, action],
+    defaultMessages
+  )
 
   useEffect(() => {
     const unsubscribe = subscribeToMessages({
-      accessToken, onMessage: (message) => {
+      accessToken,
+      onMessage: (message) => {
         dispatch(message)
-      }, roomId
+      },
+      roomId,
     })
 
     return () => {
@@ -28,16 +35,12 @@ export const Messages = ({roomId, accessToken, defaultMessages}: {
 
   return (
     <section>
-      {
-        messages.map(message => (
-          <div key={message.id}>
-            <b>{message.user.email}</b>
-            {" "}
-            <i>({message.createdAt})</i>:
-            {message.message}
-          </div>
-        ))
-      }
+      {messages.map((message) => (
+        <div key={message.id}>
+          <b>{message.user.email}</b> <i>({message.createdAt})</i>:
+          {message.message}
+        </div>
+      ))}
     </section>
   )
 }

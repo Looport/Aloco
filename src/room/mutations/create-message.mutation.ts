@@ -1,16 +1,16 @@
-import {Surreal} from "surrealdb.js";
+import {Surreal} from 'surrealdb.js'
 
-import {Message} from "@/room/interfaces/message.interface";
+import {Message} from '@/room/interfaces/message.interface'
 
 export const createMessageMutation = async ({
   roomId,
   userId,
   text,
-  accessToken
-                                            }: {
-  roomId: string,
-  userId: string,
-  text: string,
+  accessToken,
+}: {
+  roomId: string
+  userId: string
+  text: string
   accessToken: string
 }): Promise<Message> => {
   const db = new Surreal()
@@ -18,7 +18,7 @@ export const createMessageMutation = async ({
   await db.connect('http://127.0.0.1:8000/rpc', {
     database: 'test',
     namespace: 'test',
-  });
+  })
 
   await db.authenticate(accessToken)
 
@@ -31,7 +31,7 @@ export const createMessageMutation = async ({
       }
       `,
     {message: text, roomId, userId}
-  );
+  )
 
   return message
 }

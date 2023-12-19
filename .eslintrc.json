@@ -1,12 +1,12 @@
 {
   "extends": [
+    "next/core-web-vitals",
     "eslint:all",
     "plugin:github/recommended",
     "plugin:github/internal",
     "plugin:github/typescript",
     "plugin:github/browser",
     "plugin:github/react",
-    "next/core-web-vitals",
     "prettier"
   ],
   "plugins": ["github", "sort-keys-fix"],

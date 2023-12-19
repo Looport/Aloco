@@ -1,8 +1,8 @@
-import {Room} from "@/room/interfaces/room.interface";
-import {User} from "@/user/interfaces/user.interface";
+import {Room} from '@/room/interfaces/room.interface'
+import {User} from '@/user/interfaces/user.interface'
 
 export interface Message {
-  id: string,
+  id: string
   message: string
   createdAt: string
   user: User

@@ -1,13 +1,13 @@
-import {Surreal} from "surrealdb.js";
+import {Surreal} from 'surrealdb.js'
 
-import {Message} from "@/room/interfaces/message.interface";
+import {Message} from '@/room/interfaces/message.interface'
 
 export const subscribeToMessages = ({
-                                      accessToken,
-                                      roomId,
-                                      onMessage
-                                    }: {
-  accessToken: string,
+  accessToken,
+  roomId,
+  onMessage,
+}: {
+  accessToken: string
   roomId: string
   onMessage: (message: Message) => void
 }) => {
@@ -17,28 +17,32 @@ export const subscribeToMessages = ({
     db.connect('http://127.0.0.1:8000/rpc', {
       database: 'test',
       namespace: 'test',
-    }).then(() => db.authenticate(accessToken)).then(() => db.query<string[]>(
-      `
+    })
+      .then(() => db.authenticate(accessToken))
+      .then(() =>
+        db.query<string[]>(
+          `
         LIVE SELECT *, user.* FROM message WHERE message.room = $roomId;
-        `, {roomId}
-    )).then(([liveUuid]) => {
+        `,
+          {roomId}
+        )
+      )
+      .then(([liveUuid]) => {
+        resolve(() => db.kill(liveUuid))
 
-      resolve(() => db.kill(liveUuid))
-
-      return db.listenLive<Message & Record<any, any>>(liveUuid, ({
-                                                                    action,
-                                                                    result
-                                                                  }) => {
-        if (action === "CREATE") {
-          onMessage(result)
-        }
+        return db.listenLive<Message & Record<any, any>>(
+          liveUuid,
+          ({action, result}) => {
+            if (action === 'CREATE') {
+              onMessage(result)
+            }
+          }
+        )
       })
-    });
   })
-
 
   return async () => {
     const clear = await clearPromise
     clear()
-  };
+  }
 }

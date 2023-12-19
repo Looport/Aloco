@@ -1,7 +1,7 @@
-import {cookies} from "next/headers";
-import {redirect} from "next/navigation";
+import {cookies} from 'next/headers'
+import {redirect} from 'next/navigation'
 
-import {signupMutation} from "@/user/mutations/signup.mutation";
+import {signupMutation} from '@/user/mutations/signup.mutation'
 
 export default function SignUpPage() {
   if (cookies().get('accessToken')) {
@@ -9,11 +9,11 @@ export default function SignUpPage() {
   }
 
   const handleSubmit = async (formData: FormData) => {
-    "use server"
+    'use server'
 
     const accessToken = await signupMutation({
       email: formData.get('email') as string,
-      password: formData.get('password') as string
+      password: formData.get('password') as string,
     })
 
     cookies().set('accessToken', accessToken)
@@ -25,13 +25,21 @@ export default function SignUpPage() {
       <form action={handleSubmit}>
         <div>
           <label htmlFor="email-input">Email:</label>
-          <br/>
-          <input type="text" name="email" id="email-input"/>
+          <br />
+          <input
+            type="text"
+            name="email"
+            id="email-input"
+          />
         </div>
         <div>
           <label htmlFor="password-input">Password:</label>
-          <br/>
-          <input type="text" name="password" id="password-input"/>
+          <br />
+          <input
+            type="text"
+            name="password"
+            id="password-input"
+          />
         </div>
         <div>
           <button type="submit">Sign Up</button>

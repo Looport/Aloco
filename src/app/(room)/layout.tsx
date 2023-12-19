@@ -9,9 +9,5 @@ export default function RoomLayout({children}: {children: ReactNode}) {
     return redirect('/')
   }
 
-  return (
-    <>
-      {children}
-    </>
-  )
+  return <>{children}</>
 }

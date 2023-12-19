@@ -1,15 +1,18 @@
-import {Surreal} from "surrealdb.js";
+import {Surreal} from 'surrealdb.js'
 
-import {Room} from "@/room/interfaces/room.interface";
+import {Room} from '@/room/interfaces/room.interface'
 
-export const createRoomMutation = async (
-  {accessToken}: {accessToken: string}): Promise<Room> => {
+export const createRoomMutation = async ({
+  accessToken,
+}: {
+  accessToken: string
+}): Promise<Room> => {
   const db = new Surreal()
 
   await db.connect('http://127.0.0.1:8000/rpc', {
     database: 'test',
     namespace: 'test',
-  });
+  })
 
   await db.authenticate(accessToken)
 

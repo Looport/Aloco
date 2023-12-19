@@ -1,6 +1,6 @@
-import {Surreal} from "surrealdb.js";
+import {Surreal} from 'surrealdb.js'
 
-import {User} from "@/user/interfaces/user.interface";
+import {User} from '@/user/interfaces/user.interface'
 
 export const queryUser = async (accessToken: string): Promise<User> => {
   const db = new Surreal()
@@ -8,7 +8,7 @@ export const queryUser = async (accessToken: string): Promise<User> => {
   await db.connect('http://127.0.0.1:8000/rpc', {
     database: 'test',
     namespace: 'test',
-  });
+  })
 
   await db.authenticate(accessToken)
 

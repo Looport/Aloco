@@ -2,7 +2,6 @@
   "arrowParens": "always",
   "bracketSameLine": false,
   "bracketSpacing": false,
-  "embeddedLanguageFormatting": "auto",
   "htmlWhitespaceSensitivity": "css",
   "insertPragma": false,
   "jsxSingleQuote": false,
@@ -15,16 +14,5 @@
   "singleQuote": true,
   "tabWidth": 2,
   "trailingComma": "es5",
-  "useTabs": false,
-  "endOfLine": "auto",
-  "rangeStart": 0,
-  "filepath": "",
-  "parser": "",
-  "plugins": [],
-  "vueIndentScriptAndStyle": false,
-  "pluginSearchDirs": [],
-  "editorconfig": false,
-  "cursorOffset": -1,
-  "overrides": [],
-  "rangeEnd": 0
+  "endOfLine": "auto"
 }

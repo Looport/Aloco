@@ -41,7 +41,10 @@ export default async function RoomPage({params: {url}}: Props) {
 
   return (
     <main>
-      <Header roomUrl={room.url} user={user} />
+      <Header
+        roomUrl={room.url}
+        user={user}
+      />
       <Messages
         roomId={room.id}
         accessToken={accessToken}
@@ -51,7 +54,11 @@ export default async function RoomPage({params: {url}}: Props) {
         <form action={handleMessageForm}>
           <label htmlFor="message-input">Message:</label>
           <br />
-          <input type="text" id="message-input" name="message" />
+          <input
+            type="text"
+            id="message-input"
+            name="message"
+          />
           <br />
           <button type="submit">Send</button>
         </form>
