@@ -1,5 +1,4 @@
-import {Surreal} from 'surrealdb.js'
-
+import {connectDb} from '@/database/lib/connect-db'
 import {Room} from '@/room/interfaces/room.interface'
 
 export const queryRoom = async ({
@@ -9,12 +8,7 @@ export const queryRoom = async ({
   roomUrl: string
   accessToken: string
 }): Promise<Room> => {
-  const db = new Surreal()
-
-  await db.connect('http://127.0.0.1:8000/rpc', {
-    database: 'test',
-    namespace: 'test',
-  })
+  const db = await connectDb()
 
   await db.authenticate(accessToken)
 

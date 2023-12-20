@@ -3,35 +3,33 @@
 import {useEffect, useReducer} from 'react'
 
 import {Message} from '@/room/interfaces/message.interface'
-import {subscribeToMessages} from '@/room/subscriptions/messages.subscription'
+import {subscribeToRoomMessagesRequest} from '@/room/requests/subscribe-to-room-messages.request'
 
 export const Messages = ({
   roomId,
-  accessToken,
   defaultMessages,
 }: {
-  accessToken: string
   roomId: string
   defaultMessages: Message[]
 }) => {
-  const [messages, dispatch] = useReducer(
+  const [messages, dispatchMessage] = useReducer(
     (state: Message[], action: Message) => [...state, action],
     defaultMessages
   )
 
   useEffect(() => {
-    const unsubscribe = subscribeToMessages({
-      accessToken,
-      onMessage: (message) => {
-        dispatch(message)
-      },
+    const abortController = new AbortController()
+
+    subscribeToRoomMessagesRequest({
+      abortSignal: abortController.signal,
+      onMessage: dispatchMessage,
       roomId,
     })
 
     return () => {
-      unsubscribe()
+      abortController.abort()
     }
-  }, [accessToken, roomId])
+  }, [roomId])
 
   return (
     <section>

@@ -1,0 +1,25 @@
+version: '3'
+
+name: "aloco"
+
+services:
+  core:
+    build: .
+    image: dormammun/aloco:latest
+    platform: linux/amd64
+    container_name: aloco-core
+    restart: always
+    environment:
+      NODE_ENV: production
+      NEXT_PUBLIC_DB_URL: http://surrealdb:8000
+    ports:
+      - "3000:3000"
+
+  surrealdb:
+    image: surrealdb/surrealdb:latest
+    container_name: aloco-surrealdb
+    entrypoint:
+      - /surreal
+      - start
+    ports:
+      - "8000:8000"

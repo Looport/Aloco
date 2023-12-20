@@ -1,4 +1,5 @@
 import {Contribution} from '@/app/(landing)/(home)/_components/contribution'
+import {CreateRoomButton} from '@/app/(landing)/(home)/_components/create-room-button'
 import {ExploreWorldCard} from '@/app/(landing)/(home)/_components/explore-world-card'
 import {News} from '@/app/(landing)/(home)/_components/news'
 import {QuickMeeting} from '@/app/(landing)/(home)/_components/quick-meeting'
@@ -8,6 +9,7 @@ import {cn} from '@/app/_lib/cn'
 export default function HomePage() {
   return (
     <>
+      <CreateRoomButton />
       <main className={cn(['grid', 'grid-cols-2 grid-rows-5', 'gap-4'])}>
         <section className={cn(['row-span-3'])}>
           <ExploreWorldCard />

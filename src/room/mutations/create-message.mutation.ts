@@ -1,5 +1,4 @@
-import {Surreal} from 'surrealdb.js'
-
+import {connectDb} from '@/database/lib/connect-db'
 import {Message} from '@/room/interfaces/message.interface'
 
 export const createMessageMutation = async ({
@@ -13,12 +12,7 @@ export const createMessageMutation = async ({
   text: string
   accessToken: string
 }): Promise<Message> => {
-  const db = new Surreal()
-
-  await db.connect('http://127.0.0.1:8000/rpc', {
-    database: 'test',
-    namespace: 'test',
-  })
+  const db = await connectDb()
 
   await db.authenticate(accessToken)
 

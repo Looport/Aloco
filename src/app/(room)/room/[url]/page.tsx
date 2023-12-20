@@ -47,7 +47,6 @@ export default async function RoomPage({params: {url}}: Props) {
       />
       <Messages
         roomId={room.id}
-        accessToken={accessToken}
         defaultMessages={messages}
       />
       <section>
