@@ -1,55 +1,34 @@
 import {cookies} from "next/headers"
 import Image from "next/image"
 import Link from "next/link"
-import {ReactNode} from "react"
+import React, {ReactNode} from "react"
 
+import {LogoutButton} from "@/app/(landing)/_components/logout"
 import {Button} from "@/app/_components/button"
 import {
   AiOutlineGift,
   AiOutlineSchedule,
   BiUser,
+  BsFastForward,
+  BsTelephoneOutbound,
+  FiCalendar,
+  FiMap,
   IconProvider,
   LuSettings,
 } from "@/app/_components/icons"
 import {cn} from "@/app/_lib/cn"
+import {User} from "@/user/interfaces/user.interface"
 import {queryUser} from "@/user/queries/user.query"
 
 export const Header = async () => {
   const accessToken = cookies().get("accessToken")?.value
 
-  if (accessToken) {
-    const user = await queryUser(accessToken)
-
-    return (
-      <header>
-        <div>{user.email}</div>
-      </header>
-    )
-  }
+  const user = accessToken ? await queryUser(accessToken) : null
 
   return (
-    <header
-      className={cn([
-        "flex",
-        "flex-wrap",
-        "sm:justify-start",
-        "sm:flex-nowrap",
-        "z-50",
-        "w-full",
-        "text-sm",
-        "py-10",
-      ])}
-    >
+    <header className={cn(["flex", "text-sm", "py-10"])}>
       <nav
-        className={cn([
-          "max-w-[85rem]",
-          "w-full",
-          "mx-auto",
-          "px-4",
-          "sm:flex",
-          "sm:items-center",
-          "sm:justify-between",
-        ])}
+        className={cn(["w-full", "flex", "items-center", "justify-between"])}
       >
         <Link href="/">
           <Image
@@ -59,64 +38,11 @@ export const Header = async () => {
             alt="Aloco"
           />
         </Link>
-        <Nav>
-          <NavLink link="/join-call">About Us</NavLink>
-          <NavLink link="/signin">Roadmap</NavLink>
-          <NavLink link="/signin">Donate</NavLink>
-          <NavLink link="/signin">Register</NavLink>
-        </Nav>
-        <Nav>
-          <div
-            className={cn([
-              "relative",
-              "after:absolute after:top-[-1px] after:right-[-1px]",
-              "after:content-[' ']",
-              "after:w-[0.3rem] after:h-[0.3rem] after:rounded-full",
-              "after:bg-red-600",
-            ])}
-          >
-            <Button
-              type="text"
-              icon={
-                <IconProvider value={{size: "1.35rem"}}>
-                  <AiOutlineGift />
-                </IconProvider>
-              }
-            />
-          </div>
-          <div>
-            <Button
-              type="text"
-              icon={
-                <IconProvider value={{size: "1.35rem"}}>
-                  <LuSettings />
-                </IconProvider>
-              }
-            />
-          </div>
-        </Nav>
-        <Nav className={cn(["!gap-5"])}>
-          <Button
-            type="outline"
-            icon={
-              <IconProvider value={{size: "1.2rem"}}>
-                <AiOutlineSchedule />
-              </IconProvider>
-            }
-          >
-            Schedule
-          </Button>
-          <Button
-            href="/signin"
-            icon={
-              <IconProvider value={{size: "1.2rem"}}>
-                <BiUser />
-              </IconProvider>
-            }
-          >
-            Sign In
-          </Button>
-        </Nav>
+        {!user && <NotAuthNav />}
+        {user && <AuthNav />}
+        <Plugins />
+        {!user && <ActionButtons />}
+        {user && <ProfileNav user={user} />}
       </nav>
     </header>
   )
@@ -144,13 +70,170 @@ const Nav = ({
       "flex-row",
       "items-center",
       "gap-10",
-      "sm:justify-end",
+      "justify-end",
       "tracking-wider",
-      "sm:mt-0",
-      "sm:ps-5",
+      "list-none",
       className ?? "",
     ])}
   >
     {children}
   </div>
+)
+
+const NotAuthNav = () => (
+  <Nav>
+    <NavLink link="/join-call">About Us</NavLink>
+    <NavLink link="/signin">Roadmap</NavLink>
+    <NavLink link="/signin">Donate</NavLink>
+    <NavLink link="/signin">Register</NavLink>
+  </Nav>
+)
+
+const AuthNav = () => (
+  <Nav>
+    <Button
+      href="/join-call"
+      type="link"
+      icon={
+        <IconProvider value={{size: "1.2rem"}}>
+          <FiMap />
+        </IconProvider>
+      }
+    >
+      Explore Map
+    </Button>
+    <Button
+      href="/join-call"
+      type="link"
+      icon={
+        <IconProvider value={{size: "1.2rem"}}>
+          <BsFastForward />
+        </IconProvider>
+      }
+    >
+      Play Roulette
+    </Button>
+    <Button
+      href="/join-call"
+      type="link"
+      icon={
+        <IconProvider value={{size: "1.2rem"}}>
+          <FiCalendar />
+        </IconProvider>
+      }
+    >
+      Schedule
+    </Button>
+    <Button
+      href="/join-call"
+      type="link"
+      icon={
+        <IconProvider value={{size: "1.2rem"}}>
+          <BsTelephoneOutbound />
+        </IconProvider>
+      }
+    >
+      Join a Call
+    </Button>
+  </Nav>
+)
+
+const Plugins = () => (
+  <Nav>
+    <div
+      className={cn([
+        "relative",
+        "after:absolute after:top-[-1px] after:right-[-1px]",
+        "after:content-[' ']",
+        "after:w-[0.3rem] after:h-[0.3rem] after:rounded-full",
+        "after:bg-red-600",
+      ])}
+    >
+      <Button
+        type="text"
+        icon={
+          <IconProvider value={{size: "1.35rem"}}>
+            <AiOutlineGift />
+          </IconProvider>
+        }
+      />
+    </div>
+    <div>
+      <Button
+        type="text"
+        icon={
+          <IconProvider value={{size: "1.35rem"}}>
+            <LuSettings />
+          </IconProvider>
+        }
+      />
+    </div>
+  </Nav>
+)
+
+const ActionButtons = () => (
+  <Nav className={cn(["!gap-5"])}>
+    <Button
+      type="outline"
+      icon={
+        <IconProvider value={{size: "1.2rem"}}>
+          <AiOutlineSchedule />
+        </IconProvider>
+      }
+    >
+      Schedule
+    </Button>
+    <Button
+      href="/signin"
+      icon={
+        <IconProvider value={{size: "1.2rem"}}>
+          <BiUser />
+        </IconProvider>
+      }
+    >
+      Sign In
+    </Button>
+  </Nav>
+)
+
+const ProfileNav = ({user}: {user: User}) => (
+  <>
+    <div
+      className={cn([
+        "rounded-full",
+        "border-2 border-slate-50/60",
+        "relative",
+      ])}
+    >
+      <label
+        htmlFor="user-nav"
+        className={cn(["cursor-pointer"])}
+      >
+        <Image
+          className={cn(["rounded-full"])}
+          width={47}
+          height={47}
+          src="/images/landing/avatar-3.png"
+          alt={user.email}
+        />
+      </label>
+      <input
+        type="checkbox"
+        id="user-nav"
+        className={cn(["peer hidden"])}
+      />
+      <div
+        className={cn([
+          "absolute top-[100%] z-10 mt-[1rem]",
+          "hidden peer-checked:block",
+        ])}
+      >
+        <ul className={cn(["cursor-pointer"])}>
+          <li>
+            <LogoutButton />
+          </li>
+        </ul>
+      </div>
+    </div>
+  </>
 )

@@ -25,8 +25,7 @@ export const Button = ({
 
   if (type === "link") {
     btnClassName = cn([
-      "py-3",
-      "px-5",
+      "text-white/80",
       "inline-flex",
       "items-center",
       "gap-x-2",

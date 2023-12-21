@@ -5,8 +5,8 @@ export const FromSwitcher = ({label, link}: {label: string; link: string}) => (
   <div className={cn(["text-center mb-10"])}>
     {label}{" "}
     <Button
-      className={cn(["!text-white/80 !text-sm !font-normal !p-0 !underline"])}
-      type="link"
+      className={cn(["!text-white/80 !underline"])}
+      type="text"
       href={link}
     >
       Click here
