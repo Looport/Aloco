@@ -6,7 +6,7 @@ import {AuthProviderButtons} from "@/app/(landing)/(auth)/_components/auth-provi
 import {FromSwitcher} from "@/app/(landing)/(auth)/_components/from-switcher"
 import {CardTitle} from "@/app/(landing)/(home)/_components/card"
 import {cn} from "@/app/_lib/cn"
-import {querySignup} from "@/user/queries/signup.query"
+import {querySignin} from "@/user/queries/signin.query"
 
 export default function SignUpPage() {
   if (cookies().get("accessToken")) {
@@ -16,7 +16,7 @@ export default function SignUpPage() {
   const handleSubmit = async (formData: FormData) => {
     "use server"
 
-    const accessToken = await querySignup({
+    const accessToken = await querySignin({
       email: formData.get("email") as string,
       password: formData.get("password") as string,
     })
@@ -29,7 +29,7 @@ export default function SignUpPage() {
       <AuthForm
         header={<Header />}
         onSubmit={handleSubmit}
-        buttonLabel="Register"
+        buttonLabel="Login"
       />
     </main>
   )
@@ -41,11 +41,11 @@ const Header = () => (
       color={"bg-gradient-to-r from-[#FFE853] to-[#FF343F]"}
       className={"!text-center"}
     >
-      Create an Account
+      Login into your account
     </CardTitle>
     <FromSwitcher
-      label={"Already registered?"}
-      link={"/signin"}
+      label={"Don't have an account?"}
+      link={"/signup"}
     />
     <AuthProviderButtons />
     <div>or use your email for registration:</div>

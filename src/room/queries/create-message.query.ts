@@ -1,7 +1,7 @@
-import {connectDb} from '@/database/lib/connect-db'
-import {Message} from '@/room/interfaces/message.interface'
+import {connectDb} from "@/database/lib/connect-db"
+import {Message} from "@/room/interfaces/message.interface"
 
-export const createMessageMutation = async ({
+export const queryCreateMessage = async ({
   roomId,
   userId,
   text,

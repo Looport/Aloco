@@ -1,40 +1,40 @@
-import {cookies} from 'next/headers'
-import {redirect} from 'next/navigation'
+import {cookies} from "next/headers"
+import {redirect} from "next/navigation"
 
-import {Header} from '@/app/(room)/_components/header'
-import {Messages} from '@/app/(room)/room/[url]/_components/messages'
-import {createMessageMutation} from '@/room/mutations/create-message.mutation'
-import {queryMessages} from '@/room/queries/messages.query'
-import {queryRoom} from '@/room/queries/room.query'
-import {queryUser} from '@/user/queries/user.query'
+import {Header} from "@/app/(room)/_components/header"
+import {Messages} from "@/app/(room)/room/[url]/_components/messages"
+import {queryCreateMessage} from "@/room/queries/create-message.query"
+import {queryMessages} from "@/room/queries/messages.query"
+import {queryRoom} from "@/room/queries/room.query"
+import {queryUser} from "@/user/queries/user.query"
 
 interface Props {
   params: {url: string}
 }
 
 export default async function RoomPage({params: {url}}: Props) {
-  const accessToken = cookies().get('accessToken')?.value
+  const accessToken = cookies().get("accessToken")?.value
 
   if (!accessToken) {
-    return redirect('/')
+    return redirect("/")
   }
 
   const room = await queryRoom({accessToken, roomUrl: url})
 
   if (!room) {
-    return redirect('/')
+    return redirect("/")
   }
 
   const messages = await queryMessages({accessToken, roomId: room.id})
   const user = await queryUser(accessToken)
 
   const handleMessageForm = async (formData: FormData) => {
-    'use server'
+    "use server"
 
-    await createMessageMutation({
+    await queryCreateMessage({
       accessToken,
       roomId: room.id,
-      text: formData.get('message') as string,
+      text: formData.get("message") as string,
       userId: user.id,
     })
   }

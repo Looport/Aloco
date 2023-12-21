@@ -1,21 +1,21 @@
-import {cookies} from 'next/headers'
-import Image from 'next/image'
-import Link from 'next/link'
-import {ReactNode} from 'react'
+import {cookies} from "next/headers"
+import Image from "next/image"
+import Link from "next/link"
+import {ReactNode} from "react"
 
-import {Button} from '@/app/_components/button'
+import {Button} from "@/app/_components/button"
 import {
   AiOutlineGift,
   AiOutlineSchedule,
   BiUser,
   IconProvider,
   LuSettings,
-} from '@/app/_components/icons'
-import {cn} from '@/app/_lib/cn'
-import {queryUser} from '@/user/queries/user.query'
+} from "@/app/_components/icons"
+import {cn} from "@/app/_lib/cn"
+import {queryUser} from "@/user/queries/user.query"
 
 export const Header = async () => {
-  const accessToken = cookies().get('accessToken')?.value
+  const accessToken = cookies().get("accessToken")?.value
 
   if (accessToken) {
     const user = await queryUser(accessToken)
@@ -30,25 +30,25 @@ export const Header = async () => {
   return (
     <header
       className={cn([
-        'flex',
-        'flex-wrap',
-        'sm:justify-start',
-        'sm:flex-nowrap',
-        'z-50',
-        'w-full',
-        'text-sm',
-        'py-10',
+        "flex",
+        "flex-wrap",
+        "sm:justify-start",
+        "sm:flex-nowrap",
+        "z-50",
+        "w-full",
+        "text-sm",
+        "py-10",
       ])}
     >
       <nav
         className={cn([
-          'max-w-[85rem]',
-          'w-full',
-          'mx-auto',
-          'px-4',
-          'sm:flex',
-          'sm:items-center',
-          'sm:justify-between',
+          "max-w-[85rem]",
+          "w-full",
+          "mx-auto",
+          "px-4",
+          "sm:flex",
+          "sm:items-center",
+          "sm:justify-between",
         ])}
       >
         <Link href="/">
@@ -61,24 +61,24 @@ export const Header = async () => {
         </Link>
         <Nav>
           <NavLink link="/join-call">About Us</NavLink>
-          <NavLink link="/sing-in">Roadmap</NavLink>
-          <NavLink link="/sing-in">Donate</NavLink>
-          <NavLink link="/sing-in">Register</NavLink>
+          <NavLink link="/signin">Roadmap</NavLink>
+          <NavLink link="/signin">Donate</NavLink>
+          <NavLink link="/signin">Register</NavLink>
         </Nav>
         <Nav>
           <div
             className={cn([
-              'relative',
-              'after:absolute after:top-[-1px] after:right-[-1px]',
+              "relative",
+              "after:absolute after:top-[-1px] after:right-[-1px]",
               "after:content-[' ']",
-              'after:w-[0.3rem] after:h-[0.3rem] after:rounded-full',
-              'after:bg-red-600',
+              "after:w-[0.3rem] after:h-[0.3rem] after:rounded-full",
+              "after:bg-red-600",
             ])}
           >
             <Button
               type="text"
               icon={
-                <IconProvider value={{size: '1.35rem'}}>
+                <IconProvider value={{size: "1.35rem"}}>
                   <AiOutlineGift />
                 </IconProvider>
               }
@@ -88,18 +88,18 @@ export const Header = async () => {
             <Button
               type="text"
               icon={
-                <IconProvider value={{size: '1.35rem'}}>
+                <IconProvider value={{size: "1.35rem"}}>
                   <LuSettings />
                 </IconProvider>
               }
             />
           </div>
         </Nav>
-        <Nav className={cn(['!gap-5'])}>
+        <Nav className={cn(["!gap-5"])}>
           <Button
             type="outline"
             icon={
-              <IconProvider value={{size: '1.2rem'}}>
+              <IconProvider value={{size: "1.2rem"}}>
                 <AiOutlineSchedule />
               </IconProvider>
             }
@@ -107,9 +107,9 @@ export const Header = async () => {
             Schedule
           </Button>
           <Button
-            href="/sing-in"
+            href="/signin"
             icon={
-              <IconProvider value={{size: '1.2rem'}}>
+              <IconProvider value={{size: "1.2rem"}}>
                 <BiUser />
               </IconProvider>
             }
@@ -124,7 +124,7 @@ export const Header = async () => {
 
 const NavLink = ({children, link}: {children: ReactNode; link: string}) => (
   <Link
-    className={cn(['text-white/80 text-sm', 'hover:text-white', 'font-black'])}
+    className={cn(["text-sm", "hover:text-white", "font-black"])}
     href={link}
   >
     {children}
@@ -140,15 +140,15 @@ const Nav = ({
 }) => (
   <div
     className={cn([
-      'flex',
-      'flex-row',
-      'items-center',
-      'gap-10',
-      'sm:justify-end',
-      'tracking-wider',
-      'sm:mt-0',
-      'sm:ps-5',
-      className ?? '',
+      "flex",
+      "flex-row",
+      "items-center",
+      "gap-10",
+      "sm:justify-end",
+      "tracking-wider",
+      "sm:mt-0",
+      "sm:ps-5",
+      className ?? "",
     ])}
   >
     {children}

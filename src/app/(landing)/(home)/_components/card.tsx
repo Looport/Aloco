@@ -1,6 +1,6 @@
-import {ReactNode} from 'react'
+import {ReactNode} from "react"
 
-import {cn} from '@/app/_lib/cn'
+import {cn} from "@/app/_lib/cn"
 
 export const Card = ({
   body,
@@ -8,25 +8,25 @@ export const Card = ({
   footer,
   rootClassName,
 }: {
-  header: ReactNode
+  header?: ReactNode
   body: ReactNode
-  footer: ReactNode
+  footer?: ReactNode
   rootClassName?: string
 }) => (
   <div
     className={cn([
-      'flex',
-      'flex-col',
-      'border rounded-full border-slate-50/25 drop-shadow-xl',
-      'shadow-sm rounded-xl',
-      'bg-zinc-700/10 backdrop-blur-sm',
-      'overflow-hidden',
-      rootClassName ?? '',
+      "flex",
+      "flex-col",
+      "border rounded-full border-slate-50/25 drop-shadow-xl",
+      "shadow-sm rounded-xl",
+      "bg-zinc-700/10 backdrop-blur-sm",
+      "overflow-hidden",
+      rootClassName ?? "",
     ])}
   >
-    <header>{header}</header>
+    {header && <header>{header}</header>}
     <div>{body}</div>
-    <footer className={cn(['text-sm'])}>{footer}</footer>
+    {footer && <footer className={cn(["text-sm"])}>{footer}</footer>}
   </div>
 )
 
@@ -41,11 +41,11 @@ export const CardTitle = ({
 }) => (
   <h2
     className={cn([
-      'text-left',
-      'mb-5',
-      'font-black text-3xl text-transparent bg-clip-text',
+      "text-left",
+      "mb-5",
+      "font-black text-3xl text-transparent bg-clip-text",
       `${color}`,
-      className ?? '',
+      className ?? "",
     ])}
   >
     {children}
@@ -59,7 +59,7 @@ export const CardDescription = ({
   children: ReactNode
   className?: string
 }) => (
-  <p className={cn(['text-center text-white/60 text-sm', className ?? ''])}>
+  <p className={cn(["text-center text-white/60 text-sm", className ?? ""])}>
     {children}
   </p>
 )
@@ -73,10 +73,10 @@ export const CardTooltip = ({
   icon?: ReactNode
   className?: string
 }) => (
-  <div className={cn(['flex items-center gap-2.5', className ?? ''])}>
-    <div className={cn(['flex items-center gap-2'])}>
+  <div className={cn(["flex items-center gap-2.5", className ?? ""])}>
+    <div className={cn(["flex items-center gap-2"])}>
       {icon}
-      <span className={cn(['font-bold text-xl text-white'])}>{children}</span>
+      <span className={cn(["font-bold text-xl text-white"])}>{children}</span>
     </div>
   </div>
 )

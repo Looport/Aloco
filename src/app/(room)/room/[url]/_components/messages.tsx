@@ -1,9 +1,9 @@
-'use client'
+"use client"
 
-import {useEffect, useReducer} from 'react'
+import {useEffect, useReducer} from "react"
 
-import {Message} from '@/room/interfaces/message.interface'
-import {subscribeToRoomMessagesRequest} from '@/room/requests/subscribe-to-room-messages.request'
+import {Message} from "@/room/interfaces/message.interface"
+import {subscribeToRoomMessagesRequest} from "@/room/requests/subscribe-to-room-messages.request"
 
 export const Messages = ({
   roomId,

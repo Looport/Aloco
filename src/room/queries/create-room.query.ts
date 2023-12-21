@@ -1,9 +1,7 @@
-import {Surreal} from 'surrealdb.js'
+import {connectDb} from "@/database/lib/connect-db"
+import {Room} from "@/room/interfaces/room.interface"
 
-import {connectDb} from '@/database/lib/connect-db'
-import {Room} from '@/room/interfaces/room.interface'
-
-export const createRoomMutation = async ({
+export const queryCreateRoom = async ({
   accessToken,
 }: {
   accessToken: string

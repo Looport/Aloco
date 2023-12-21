@@ -1,4 +1,4 @@
-import {Message} from '@/room/interfaces/message.interface'
+import {Message} from "@/room/interfaces/message.interface"
 
 export const subscribeToRoomMessagesRequest = async ({
   roomId,
@@ -14,7 +14,7 @@ export const subscribeToRoomMessagesRequest = async ({
   })
 
   if (!response.ok || !response.body) {
-    throw new Error('Could not subscribe to messages')
+    throw new Error("Could not subscribe to messages")
   }
 
   const reader = response.body.getReader()
@@ -33,4 +33,4 @@ export const subscribeToRoomMessagesRequest = async ({
 }
 
 const parseStreamChunk = (chunk: Uint8Array) =>
-  new TextDecoder('utf-8').decode(chunk)
+  new TextDecoder("utf-8").decode(chunk)

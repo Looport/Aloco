@@ -1,5 +1,5 @@
-import {connectDb} from '@/database/lib/connect-db'
-import {Message} from '@/room/interfaces/message.interface'
+import {connectDb} from "@/database/lib/connect-db"
+import {Message} from "@/room/interfaces/message.interface"
 
 export const queryMessages = async ({
   roomId,

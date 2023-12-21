@@ -1,8 +1,8 @@
-import {cookies} from 'next/headers'
-import {NextRequest} from 'next/server'
+import {cookies} from "next/headers"
+import {NextRequest} from "next/server"
 
-import {connectDb} from '@/database/lib/connect-db'
-import {Message} from '@/room/interfaces/message.interface'
+import {connectDb} from "@/database/lib/connect-db"
+import {Message} from "@/room/interfaces/message.interface"
 
 export const GET = async (
   req: NextRequest,
@@ -10,8 +10,8 @@ export const GET = async (
 ) => {
   const db = await connectDb()
 
-  const accessToken = cookies().get('accessToken')?.value
-  if (!accessToken) throw new Error('No access token')
+  const accessToken = cookies().get("accessToken")?.value
+  if (!accessToken) throw new Error("No access token")
   await db.authenticate(accessToken)
 
   const streamController = new TransformStream()
@@ -25,7 +25,7 @@ export const GET = async (
   await db.listenLive<Message & Record<any, any>>(
     uuid,
     async ({action, result}) => {
-      if (action === 'CREATE') {
+      if (action === "CREATE") {
         const writer = streamController.writable.getWriter()
 
         await writer.write(new TextEncoder().encode(JSON.stringify(result)))
@@ -47,6 +47,6 @@ export const GET = async (
   return new Response(streamController.readable)
 }
 
-process.on('', async () => {
-  console.log('beforeExit6')
+process.on("", async () => {
+  console.log("beforeExit6")
 })

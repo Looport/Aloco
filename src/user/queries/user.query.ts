@@ -1,5 +1,5 @@
-import {connectDb} from '@/database/lib/connect-db'
-import {User} from '@/user/interfaces/user.interface'
+import {connectDb} from "@/database/lib/connect-db"
+import {User} from "@/user/interfaces/user.interface"
 
 export const queryUser = async (accessToken: string): Promise<User> => {
   const db = await connectDb()

@@ -1,5 +1,5 @@
-import {connectDb} from '@/database/lib/connect-db'
-import {Room} from '@/room/interfaces/room.interface'
+import {connectDb} from "@/database/lib/connect-db"
+import {Room} from "@/room/interfaces/room.interface"
 
 export const queryRoom = async ({
   roomUrl,
