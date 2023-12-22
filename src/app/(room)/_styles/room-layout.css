@@ -1,0 +1,13 @@
+.room-container {
+  background: linear-gradient(
+    45deg,
+    rgba(44, 56, 146, 1) 0%,
+    rgba(21, 21, 23, 0) 50%
+  ) no-repeat 0 100% / contain,
+  radial-gradient(
+    90% 100% at 80% 30%,
+    rgba(197, 30, 180, 0.3) 0%,
+    rgba(21, 21, 23, 0) 50%
+  ) no-repeat,
+  #151517;
+}

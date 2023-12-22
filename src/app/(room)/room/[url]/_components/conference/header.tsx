@@ -1,4 +1,4 @@
-import {User} from '@/user/interfaces/user.interface'
+import {User} from "@/user/interfaces/user.interface"
 
 interface Props {
   roomUrl: string

@@ -87,7 +87,7 @@ export const Button = ({
     return (
       <Link
         href={href}
-        className={cn([btnClassName, className ?? ""])}
+        className={cn([btnClassName, "cursor-pointer", className ?? ""])}
       >
         {icon && <div className="flex-shrink-0">{icon}</div>}
         {children}
@@ -99,9 +99,9 @@ export const Button = ({
     <button
       {...props}
       type={htmlType ?? "button"}
-      className={cn([btnClassName, className ?? ""])}
+      className={cn([btnClassName, "cursor-pointer", className ?? ""])}
     >
-      {icon && <div className="flex-shrink-0">{icon}</div>}
+      {icon && <div className="flex-shrink-0 z-10">{icon}</div>}
       {children}
     </button>
   )

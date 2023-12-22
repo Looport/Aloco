@@ -20,7 +20,8 @@ export const Roadmap = () => (
       "after:bg-[length:cover] after:rounded-[2rem]",
       "p-5",
     ])}
-    header={
+  >
+    <header>
       <h2
         className={cn([
           "text-center",
@@ -33,58 +34,54 @@ export const Roadmap = () => (
       >
         Roadmap
       </h2>
-    }
-    body={
+    </header>
+    <div
+      className={cn([
+        "flex-1",
+        "grid grid-rows-[minmax(0, 1fr), 1px, minmax(0, 1fr)]",
+        "grid-cols-6",
+        "mb-5 items-end gap-2.5 justify-stretch",
+      ])}
+    >
+      <Limit color="#354AEB">2023</Limit>
+      <StepDescription>
+        Lorem ipsum Dolor sit amet Consectetur adipiscing
+      </StepDescription>
+      <StepDescription>Dolor sitamet Consectetur adipiscing</StepDescription>
+      <StepDescription>Consectetur adipiscing</StepDescription>
+      <StepDescription>
+        Lorem ipsum Dolor sit amet Consectetur adipiscing
+      </StepDescription>
+      <Limit color="#FF222E">2024</Limit>
       <div
         className={cn([
-          "flex-1",
-          "grid grid-rows-[minmax(0, 1fr), 1px, minmax(0, 1fr)]",
-          "grid-cols-6",
-          "mb-5 items-end gap-2.5 justify-stretch",
+          "justify-self-stretch",
+          "col-span-6 bg-white h-[0.2rem]",
+          "bg-gradient-to-r",
+          "from-[#354AEB] from-0%",
+          "to-[#FF222E] to-100%",
         ])}
+      />
+      <div />
+      <Step>Step 1</Step>
+      <Step>Step 2</Step>
+      <Step>Step 3</Step>
+      <Step>Step 4</Step>
+      <div />
+    </div>
+    <footer className={cn(["flex justify-center"])}>
+      <Button
+        type="outline"
+        icon={
+          <IconProvider value={{size: "1.3rem"}}>
+            <BiMapAlt />
+          </IconProvider>
+        }
       >
-        <Limit color="#354AEB">2023</Limit>
-        <StepDescription>
-          Lorem ipsum Dolor sit amet Consectetur adipiscing
-        </StepDescription>
-        <StepDescription>Dolor sitamet Consectetur adipiscing</StepDescription>
-        <StepDescription>Consectetur adipiscing</StepDescription>
-        <StepDescription>
-          Lorem ipsum Dolor sit amet Consectetur adipiscing
-        </StepDescription>
-        <Limit color="#FF222E">2024</Limit>
-        <div
-          className={cn([
-            "justify-self-stretch",
-            "col-span-6 bg-white h-[0.2rem]",
-            "bg-gradient-to-r",
-            "from-[#354AEB] from-0%",
-            "to-[#FF222E] to-100%",
-          ])}
-        />
-        <div />
-        <Step>Step 1</Step>
-        <Step>Step 2</Step>
-        <Step>Step 3</Step>
-        <Step>Step 4</Step>
-        <div />
-      </div>
-    }
-    footer={
-      <div className={cn(["flex justify-center"])}>
-        <Button
-          type="outline"
-          icon={
-            <IconProvider value={{size: "1.3rem"}}>
-              <BiMapAlt />
-            </IconProvider>
-          }
-        >
-          Learn More
-        </Button>
-      </div>
-    }
-  />
+        Learn More
+      </Button>
+    </footer>
+  </Card>
 )
 
 const Step = ({children}: {children: ReactNode}) => (

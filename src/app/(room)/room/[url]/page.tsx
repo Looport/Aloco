@@ -1,9 +1,9 @@
 import {cookies} from "next/headers"
 import {redirect} from "next/navigation"
 
-import {Header} from "@/app/(room)/_components/header"
-import {Messages} from "@/app/(room)/room/[url]/_components/messages"
-import {queryCreateMessage} from "@/room/queries/create-message.query"
+import {Chat} from "@/app/(room)/room/[url]/_components/chat"
+import {Conference} from "@/app/(room)/room/[url]/_components/conference"
+import {cn} from "@/app/_lib/cn"
 import {queryMessages} from "@/room/queries/messages.query"
 import {queryRoom} from "@/room/queries/room.query"
 import {queryUser} from "@/user/queries/user.query"
@@ -14,13 +14,11 @@ interface Props {
 
 export default async function RoomPage({params: {url}}: Props) {
   const accessToken = cookies().get("accessToken")?.value
-
   if (!accessToken) {
     return redirect("/")
   }
 
   const room = await queryRoom({accessToken, roomUrl: url})
-
   if (!room) {
     return redirect("/")
   }
@@ -28,40 +26,22 @@ export default async function RoomPage({params: {url}}: Props) {
   const messages = await queryMessages({accessToken, roomId: room.id})
   const user = await queryUser(accessToken)
 
-  const handleMessageForm = async (formData: FormData) => {
-    "use server"
-
-    await queryCreateMessage({
-      accessToken,
-      roomId: room.id,
-      text: formData.get("message") as string,
-      userId: user.id,
-    })
-  }
-
   return (
-    <main>
-      <Header
-        roomUrl={room.url}
+    <main
+      className={cn([
+        "h-screen room-container text-white/80",
+        "grid grid-cols-[1fr_minmax(0,440px)]",
+      ])}
+    >
+      <Conference
         user={user}
+        room={room}
       />
-      <Messages
-        roomId={room.id}
+      <Chat
+        user={user}
+        room={room}
         defaultMessages={messages}
       />
-      <section>
-        <form action={handleMessageForm}>
-          <label htmlFor="message-input">Message:</label>
-          <br />
-          <input
-            type="text"
-            id="message-input"
-            name="message"
-          />
-          <br />
-          <button type="submit">Send</button>
-        </form>
-      </section>
     </main>
   )
 }

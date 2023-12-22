@@ -37,44 +37,43 @@ export const AuthForm = ({
 
         "!text-center !overflow-visible",
       ])}
-      header={header}
-      body={
-        <form
-          action={onSubmit}
-          className={cn(["w-1/2 mx-auto"])}
-        >
-          <div className={cn(["flex flex-col gap-5 justify-center"])}>
-            <Input
-              name="email"
-              type="text"
-              placeholder="Email"
-              icon={
-                <IconProvider value={{size: "1.3rem"}}>
-                  <BsEnvelope />
-                </IconProvider>
-              }
-            />
-            <Input
-              name="password"
-              type="password"
-              placeholder="Password"
-              icon={
-                <IconProvider value={{size: "1.3rem"}}>
-                  <HiOutlineLockClosed />
-                </IconProvider>
-              }
-            />
-            <div className={cn(["flex justify-center"])}>
-              <Button
-                htmlType="submit"
-                className={cn(["!px-20 py-5"])}
-              >
-                {buttonLabel}
-              </Button>
-            </div>
+    >
+      <header>{header}</header>
+      <form
+        action={onSubmit}
+        className={cn(["w-1/2 mx-auto"])}
+      >
+        <div className={cn(["flex flex-col gap-5 justify-center"])}>
+          <Input
+            name="email"
+            type="text"
+            placeholder="Email"
+            icon={
+              <IconProvider value={{size: "1.3rem"}}>
+                <BsEnvelope />
+              </IconProvider>
+            }
+          />
+          <Input
+            name="password"
+            type="password"
+            placeholder="Password"
+            icon={
+              <IconProvider value={{size: "1.3rem"}}>
+                <HiOutlineLockClosed />
+              </IconProvider>
+            }
+          />
+          <div className={cn(["flex justify-center"])}>
+            <Button
+              htmlType="submit"
+              className={cn(["!px-20 py-5"])}
+            >
+              {buttonLabel}
+            </Button>
           </div>
-        </form>
-      }
-    />
+        </div>
+      </form>
+    </Card>
   </main>
 )

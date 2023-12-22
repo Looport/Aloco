@@ -3,14 +3,10 @@ import {ReactNode} from "react"
 import {cn} from "@/app/_lib/cn"
 
 export const Card = ({
-  body,
-  header,
-  footer,
+  children,
   rootClassName,
 }: {
-  header?: ReactNode
-  body: ReactNode
-  footer?: ReactNode
+  children: ReactNode
   rootClassName?: string
 }) => (
   <div
@@ -24,9 +20,7 @@ export const Card = ({
       rootClassName ?? "",
     ])}
   >
-    {header && <header>{header}</header>}
-    <div>{body}</div>
-    {footer && <footer className={cn(["text-sm"])}>{footer}</footer>}
+    {children}
   </div>
 )
 
