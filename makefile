@@ -26,4 +26,4 @@ db-migrate:
 	npm run script -- src/database/migrations/init.ts
 
 db-remove:
-	npm run script -- src/database/migrations/init.ts
+	npm run script -- src/database/scripts/clear-db.ts

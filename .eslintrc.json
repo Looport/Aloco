@@ -87,6 +87,7 @@
     "filenames/match-regex": 0,
     "@typescript-eslint/no-empty-function": 1,
     "require-atomic-updates": 1,
-    "max-lines": 1
+    "max-lines": 1,
+    "jsx-a11y/media-has-caption": 1
   }
 }

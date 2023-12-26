@@ -2,7 +2,7 @@ import {cookies} from "next/headers"
 import {NextRequest} from "next/server"
 
 import {connectDb} from "@/database/lib/connect-db"
-import {Message} from "@/room/interfaces/message.interface"
+import {Signal} from "@/room/interfaces/signal.interface"
 
 export const GET = async (
   req: NextRequest,
@@ -19,12 +19,12 @@ export const GET = async (
 
   const [uuid] = await db.query<string[]>(
     `
-    LIVE SELECT *, user.*, room.* FROM message 
-    WHERE message.room = $id;
+    LIVE SELECT *, user.*, room.* FROM signal 
+    WHERE signal.room = $id AND signal.user != $auth.id;
     `,
     {id}
   )
-  await db.listenLive<Message & Record<any, any>>(
+  await db.listenLive<Signal & Record<any, any>>(
     uuid,
     async ({action, result}) => {
       if (action === "CREATE") {

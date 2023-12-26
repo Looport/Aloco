@@ -4,7 +4,7 @@ import {useEffect, useReducer} from "react"
 
 import {MessageList} from "@/app/(room)/room/[url]/_components/message-list"
 import {Message} from "@/room/interfaces/message.interface"
-import {subscribeToRoomMessagesRequest} from "@/room/requests/subscribe-to-room-messages.request"
+import {subscribeToMessageRequest} from "@/room/requests/subscribe-to-message.request"
 import {User} from "@/user/interfaces/user.interface"
 
 export const Messages = ({
@@ -24,7 +24,7 @@ export const Messages = ({
   useEffect(() => {
     const abortController = new AbortController()
 
-    subscribeToRoomMessagesRequest({
+    subscribeToMessageRequest({
       abortSignal: abortController.signal,
       onMessage: dispatchMessage,
       roomId,

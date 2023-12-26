@@ -1,6 +1,6 @@
 import {Message} from "@/room/interfaces/message.interface"
 
-export const subscribeToRoomMessagesRequest = async ({
+export const subscribeToMessageRequest = async ({
   roomId,
   abortSignal,
   onMessage,

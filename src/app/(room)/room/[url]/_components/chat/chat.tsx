@@ -32,14 +32,13 @@ export const Chat = ({
       accessToken,
       roomId: room.id,
       text: formData.get("message") as string,
-      userId: user.id,
     })
   }
 
   return (
     <Card
       rootClassName={cn([
-        "p-10 !rounded-none border-t-0 border-b-0",
+        "p-10 h-full !rounded-none border-t-0 border-b-0",
         "flex flex-col space-between",
       ])}
     >

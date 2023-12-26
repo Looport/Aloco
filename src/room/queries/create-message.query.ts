@@ -3,12 +3,10 @@ import {Message} from "@/room/interfaces/message.interface"
 
 export const queryCreateMessage = async ({
   roomId,
-  userId,
   text,
   accessToken,
 }: {
   roomId: string
-  userId: string
   text: string
   accessToken: string
 }): Promise<Message> => {
@@ -16,15 +14,15 @@ export const queryCreateMessage = async ({
 
   await db.authenticate(accessToken)
 
-  const [message] = await db.query<Array<Message & Record<any, any>>>(
+  const [[message]] = await db.query<Array<Array<Message & Record<any, any>>>>(
     `
       CREATE message CONTENT {
         message: $message,
         room: $roomId,
-        user: $userId,
+        user: $auth.id,
       }
       `,
-    {message: text, roomId, userId}
+    {message: text, roomId}
   )
 
   return message
