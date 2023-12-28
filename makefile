@@ -20,10 +20,26 @@ prod-start:
 ### DB ###
 ##########
 db-start:
-	docker compose up -d surrealdb
+	docker compose -f compose.yaml -f compose.dev.yaml up -d surrealdb
+
+db-build:
+	if [ -d dist/database ]; then \
+		rm -r dist/database; \
+	fi
+	npx tsc src/database/**/* --outDir dist/database
 
 db-migrate:
-	npm run script -- src/database/migrations/init.ts
+	if [ -f .env.local ]; then \
+	  node --env-file=.env.local dist/database/migrations/init.js; \
+	else \
+	  node dist/database/migrations/init.js; \
+	fi
+	echo "Migration completed"
 
-db-remove:
-	npm run script -- src/database/scripts/clear-db.ts
+db-clear:
+	if [ -f .env.local ]; then \
+	  node --env-file=.env.local dist/database/scripts/clear-db.js; \
+	else \
+	  node dist/database/scripts/clear-db.js; \
+	fi
+	echo "Database cleared"

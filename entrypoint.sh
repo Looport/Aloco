@@ -1,6 +1,5 @@
 #!/bin/sh
 
-
-#npm run migrate
+make db-migrate
 
 npm start

@@ -1,1 +1,1 @@
-import {Surreal} from 'surrealdb.js'const QUERY = `REMOVE DATABASE test;`;(async () => {  const db = new Surreal()  await db.connect('http://127.0.0.1:8000/rpc', {    database: 'test',    namespace: 'test',  })  await db.query(QUERY)  await db.close()})()
+import {connectDb} from "../lib/connect-db"const QUERY = `REMOVE DATABASE test;`;(async () => {  const db = await connectDb()  await db.query(QUERY)  await db.close()})()

@@ -11,15 +11,27 @@ services:
     restart: always
     environment:
       NODE_ENV: production
-      NEXT_PUBLIC_DB_URL: http://surrealdb:8000
+      DB_URL: http://surrealdb:8000
     ports:
-      - "3000:3000"
+      - "80:3000"
+    networks:
+      - services_network
 
   surrealdb:
     image: surrealdb/surrealdb:latest
     container_name: aloco-surrealdb
+    user: root
+    volumes:
+      - ~/docker-volumes:/storage
     entrypoint:
       - /surreal
       - start
-    ports:
-      - "8000:8000"
+      - file:/storage/surreal.db
+    expose:
+      - "8000"
+    networks:
+      - services_network
+
+networks:
+  services_network:
+    driver: bridge

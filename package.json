@@ -7,14 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "format": "npm run lint -- --fix",
-    "=========": "=======",
-    "script": "node -r @swc-node/register",
-    "migrate": "npm run script -- src/database/migrations/init.ts",
-    "clear-db": "npm run script -- src/database/scripts/clear-db.ts"
+    "format": "npm run lint -- --fix"
   },
   "dependencies": {
-    "@swc-node/register": "^1.6.8",
     "next": "14.0.4",
     "peerjs": "^1.5.2",
     "preline": "^2.0.2",

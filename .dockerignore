@@ -2,6 +2,7 @@ node_modules
 .next
 out
 build
+dist
 *.tsbuildinfo
 next-env.d.ts
 
@@ -15,7 +16,6 @@ npm-debug.log*
 
 Dockerfile
 compose.yaml
-makefile
 
 .DS_Store
 .idea
