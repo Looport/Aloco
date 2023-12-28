@@ -13,9 +13,9 @@ README.md
 npm-debug.log*
 .eslintrc.json
 .prettierrc.json
+deployment
 
 Dockerfile
-compose.yaml
 
 .DS_Store
 .idea

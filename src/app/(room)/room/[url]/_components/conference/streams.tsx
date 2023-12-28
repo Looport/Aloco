@@ -38,6 +38,7 @@ export const Streams = ({roomId}: {roomId: string; userId: string}) => {
       {ownStream && (
         <VideoContainer>
           <video
+            muted
             ref={videoRef}
             autoPlay
             playsInline

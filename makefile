@@ -2,25 +2,25 @@
 ### COMMON ###
 ##############
 build:
-	docker compose build
+	docker compose -f ./deployment/compose.yaml build
 
 push:
-	docker compose push
+	docker compose -f ./deployment/compose.yaml push
 
 pull:
-	docker compose pull
+	docker compose -f ./deployment/compose.yaml pull
 
 ##############
 ### DEPLOY ###
 ##############
 prod-start:
-	docker compose up -d
+	docker compose -f ./deployment/compose.yaml up -d
 
 ##########
 ### DB ###
 ##########
 db-start:
-	docker compose -f compose.yaml -f compose.dev.yaml up -d surrealdb
+	docker compose -f ./deployment/compose.yaml -f ./deployment/compose.dev.yaml up -d surrealdb
 
 db-build:
 	if [ -d dist/database ]; then \

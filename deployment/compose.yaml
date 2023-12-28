@@ -4,7 +4,7 @@ name: "aloco"
 
 services:
   core:
-    build: .
+    build: ..
     image: dormammun/aloco:latest
     platform: linux/amd64
     container_name: aloco-core
@@ -12,8 +12,8 @@ services:
     environment:
       NODE_ENV: production
       DB_URL: http://surrealdb:8000
-    ports:
-      - "80:3000"
+    expose:
+      - "3000"
     networks:
       - services_network
 
@@ -29,6 +29,21 @@ services:
       - file:/storage/surreal.db
     expose:
       - "8000"
+    networks:
+      - services_network
+
+  proxy:
+    image: nginx:latest
+    container_name: aloco-proxy
+    depends_on:
+      - core
+    volumes:
+      - ./proxy/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./proxy/certificate/cert.crt:/etc/nginx/cert.crt:ro
+      - ./proxy/certificate/private.key:/etc/nginx/private.key:ro
+    ports:
+      - "443:443"
+      - "80:80"
     networks:
       - services_network
 
