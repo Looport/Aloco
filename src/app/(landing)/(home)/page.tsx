@@ -1,10 +1,10 @@
-import {Contribution} from "@/app/(landing)/(home)/_components/contribution"
-import {CreateRoomButton} from "@/app/(landing)/(home)/_components/create-room-button"
-import {ExploreWorldCard} from "@/app/(landing)/(home)/_components/explore-world-card"
-import {News} from "@/app/(landing)/(home)/_components/news"
-import {QuickMeeting} from "@/app/(landing)/(home)/_components/quick-meeting"
-import {Roadmap} from "@/app/(landing)/(home)/_components/roadmap"
-import {cn} from "@/app/_lib/cn"
+import {Contribution} from "@/web/common/components/home/contribution"
+import {CreateRoomButton} from "@/web/common/components/home/create-room-button"
+import {ExploreWorldCard} from "@/web/common/components/home/explore-world-card"
+import {News} from "@/web/common/components/home/news"
+import {QuickMeeting} from "@/web/common/components/home/quick-meeting"
+import {Roadmap} from "@/web/common/components/home/roadmap"
+import {cn} from "@/web/common/utils/cn"
 
 export default function HomePage() {
   return (

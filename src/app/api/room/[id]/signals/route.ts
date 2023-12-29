@@ -1,7 +1,7 @@
 import {NextRequest} from "next/server"
 
-import {requireAccessToken} from "@/app/_lib/require-access-token"
 import {queryCreateSignal} from "@/room/queries/create-signal.query"
+import {requireAccessToken} from "@/web/auth/lib/require-access-token"
 
 export const POST = async (
   req: NextRequest,

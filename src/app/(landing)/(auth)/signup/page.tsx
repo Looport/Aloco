@@ -1,12 +1,12 @@
 import {cookies} from "next/headers"
 import {redirect} from "next/navigation"
 
-import {AuthForm} from "@/app/(landing)/(auth)/_components/auth-form"
-import {AuthProviderButtons} from "@/app/(landing)/(auth)/_components/auth-provider-buttons"
-import {FromSwitcher} from "@/app/(landing)/(auth)/_components/from-switcher"
-import {CardTitle} from "@/app/(landing)/(home)/_components/card"
-import {cn} from "@/app/_lib/cn"
 import {querySignup} from "@/user/queries/signup.query"
+import {AuthForm} from "@/web/auth/components/auth-form"
+import {AuthProviderButtons} from "@/web/auth/components/auth-provider-buttons"
+import {FromSwitcher} from "@/web/auth/components/from-switcher"
+import {CardTitle} from "@/web/common/components/home/card"
+import {cn} from "@/web/common/utils/cn"
 
 export default function SignUpPage() {
   if (cookies().get("accessToken")) {

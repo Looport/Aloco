@@ -1,10 +1,10 @@
-import type {Config} from 'tailwindcss'
+import type {Config} from "tailwindcss"
 
 const config: Config = {
-  content: ['./src/app/**/**/*.tsx', './node_modules/preline/preline.js'],
+  content: ["./src/**/**/*.tsx", "./node_modules/preline/preline.js"],
   plugins: [
     // eslint-disable-next-line import/no-commonjs
-    require('preline/plugin'),
+    require("preline/plugin"),
   ],
 }
 export default config

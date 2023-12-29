@@ -1,9 +1,9 @@
 import {NextRequest} from "next/server"
 
-import {requireAccessToken} from "@/app/_lib/require-access-token"
 import {authenticateConnection} from "@/database/lib/authenticate-connection"
 import {connectDb} from "@/database/lib/connect-db"
 import {Signal} from "@/room/interfaces/signal.interface"
+import {requireAccessToken} from "@/web/auth/lib/require-access-token"
 
 export const GET = async (
   req: NextRequest,

@@ -1,11 +1,11 @@
-import "./_styles/global.css"
-import "./_styles/tailwind.css"
+import "@/web/common/styles/global.css"
+import "@/web/common/styles/tailwind.css"
 
 import type {Metadata} from "next"
 import {Inter} from "next/font/google"
 import {ReactNode} from "react"
 
-import {PrelineScript} from "@/app/_components/preline-script"
+import {PrelineScript} from "@/web/common/components/preline-script"
 
 const inter = Inter({subsets: ["latin"]})
 

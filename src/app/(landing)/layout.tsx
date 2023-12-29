@@ -1,9 +1,9 @@
-import "./_styles/landing.css"
+import "../../web/common/styles/landing.css"
 import {ReactNode} from "react"
 
-import {Footer} from "@/app/(landing)/_components/footer"
-import {Header} from "@/app/(landing)/_components/header"
-import {cn} from "@/app/_lib/cn"
+import {Footer} from "@/web/common/components/landing/footer"
+import {Header} from "@/web/common/components/landing/header"
+import {cn} from "@/web/common/utils/cn"
 
 export default function LandingLayout({children}: {children: ReactNode}) {
   return (

@@ -1,9 +1,10 @@
-import {getMessagesAction} from "@/app/(room)/_actions/get-messages.action"
-import {getRoomAction} from "@/app/(room)/_actions/get-room-action"
-import {Chat} from "@/app/(room)/room/[url]/_components/chat"
-import {Conference} from "@/app/(room)/room/[url]/_components/conference"
-import {getUserAction} from "@/app/_actions/get-user.action"
-import {cn} from "@/app/_lib/cn"
+import {cn} from "@/web/common/utils/cn"
+import {getMessagesAction} from "@/web/room/actions/get-messages.action"
+import {getRoomAction} from "@/web/room/actions/get-room-action"
+import {getUserAction} from "@/web/user/actions/get-user.action"
+
+import {Chat} from "../../../../web/room/components/chat"
+import {Conference} from "../../../../web/room/components/conference"
 
 interface Props {
   params: {url: string}
