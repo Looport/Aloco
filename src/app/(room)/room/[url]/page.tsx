@@ -1,30 +1,19 @@
-import {cookies} from "next/headers"
-import {redirect} from "next/navigation"
-
+import {getMessagesAction} from "@/app/(room)/_actions/get-messages.action"
+import {getRoomAction} from "@/app/(room)/_actions/get-room-action"
 import {Chat} from "@/app/(room)/room/[url]/_components/chat"
 import {Conference} from "@/app/(room)/room/[url]/_components/conference"
+import {getUserAction} from "@/app/_actions/get-user.action"
 import {cn} from "@/app/_lib/cn"
-import {queryMessages} from "@/room/queries/messages.query"
-import {queryRoom} from "@/room/queries/room.query"
-import {queryUser} from "@/user/queries/user.query"
 
 interface Props {
   params: {url: string}
 }
 
 export default async function RoomPage({params: {url}}: Props) {
-  const accessToken = cookies().get("accessToken")?.value
-  if (!accessToken) {
-    return redirect("/")
-  }
+  const room = await getRoomAction(url)
 
-  const room = await queryRoom({accessToken, roomUrl: url})
-  if (!room) {
-    return redirect("/")
-  }
-
-  const messages = await queryMessages({accessToken, roomId: room.id})
-  const user = await queryUser(accessToken)
+  const messages = await getMessagesAction(room.id)
+  const user = await getUserAction()
 
   return (
     <main

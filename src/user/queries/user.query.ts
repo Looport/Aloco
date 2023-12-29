@@ -1,14 +1,19 @@
+import {authenticateConnection} from "@/database/lib/authenticate-connection"
 import {connectDb} from "@/database/lib/connect-db"
 import {User} from "@/user/interfaces/user.interface"
 
 export const queryUser = async (accessToken: string): Promise<User> => {
   const db = await connectDb()
 
-  await db.authenticate(accessToken)
+  try {
+    await authenticateConnection(db, accessToken)
 
-  const [[user]] = await db.query<Array<Array<User & Record<any, any>>>>(`
+    const [[user]] = await db.query<Array<Array<User & Record<any, any>>>>(`
     SELECT * FROM user WHERE id = $auth;
   `)
 
-  return user
+    return user
+  } finally {
+    await db.close()
+  }
 }

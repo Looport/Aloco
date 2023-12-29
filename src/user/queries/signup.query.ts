@@ -4,13 +4,13 @@ import {SignupPayload} from "@/user/interfaces/signup-payload.interface"
 export const querySignup = async ({email, password}: SignupPayload) => {
   const db = await connectDb()
 
-  const accessToken = await db.signup({
-    email,
-    password,
-    scope: "user",
-  })
-
-  await db.close()
-
-  return accessToken
+  try {
+    return await db.signup({
+      email,
+      password,
+      scope: "user",
+    })
+  } finally {
+    await db.close()
+  }
 }

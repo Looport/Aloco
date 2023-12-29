@@ -1,3 +1,4 @@
+import {authenticateConnection} from "@/database/lib/authenticate-connection"
 import {connectDb} from "@/database/lib/connect-db"
 import {Message} from "@/room/interfaces/message.interface"
 
@@ -12,18 +13,24 @@ export const queryCreateMessage = async ({
 }): Promise<Message> => {
   const db = await connectDb()
 
-  await db.authenticate(accessToken)
+  try {
+    await authenticateConnection(db, accessToken)
 
-  const [[message]] = await db.query<Array<Array<Message & Record<any, any>>>>(
-    `
+    const [[message]] = await db.query<
+      Array<Array<Message & Record<any, any>>>
+    >(
+      `
       CREATE message CONTENT {
         message: $message,
         room: $roomId,
         user: $auth.id,
       }
       `,
-    {message: text, roomId}
-  )
+      {message: text, roomId}
+    )
 
-  return message
+    return message
+  } finally {
+    await db.close()
+  }
 }

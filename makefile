@@ -1,6 +1,5 @@
-##############
-### COMMON ###
-##############
+# Images
+
 build:
 	docker compose -f ./deployment/compose.yaml build
 
@@ -10,17 +9,23 @@ push:
 pull:
 	docker compose -f ./deployment/compose.yaml pull
 
-##############
-### DEPLOY ###
-##############
-prod-start:
+# Development
+
+deploy-dev:
+	docker compose -f ./deployment/compose.yaml -f ./deployment/compose.dev.yaml up -d
+
+deploy-dev-surrealdb:
+	docker compose -f ./deployment/compose.yaml -f ./deployment/compose.dev.yaml up -d surrealdb
+
+# Production
+
+deploy-prod:
 	docker compose -f ./deployment/compose.yaml up -d
 
-##########
-### DB ###
-##########
-db-start:
-	docker compose -f ./deployment/compose.yaml -f ./deployment/compose.dev.yaml up -d surrealdb
+deploy-prod-surrealdb:
+	docker compose -f ./deployment/compose.yaml up -d surrealdb
+
+# Database
 
 db-build:
 	if [ -d dist/database ]; then \

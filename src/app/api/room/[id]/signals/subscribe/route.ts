@@ -1,6 +1,7 @@
-import {cookies} from "next/headers"
 import {NextRequest} from "next/server"
 
+import {requireAccessToken} from "@/app/_lib/require-access-token"
+import {authenticateConnection} from "@/database/lib/authenticate-connection"
 import {connectDb} from "@/database/lib/connect-db"
 import {Signal} from "@/room/interfaces/signal.interface"
 
@@ -8,12 +9,14 @@ export const GET = async (
   req: NextRequest,
   {params: {id}}: {params: {id: string}}
 ) => {
-  const accessToken = cookies().get("accessToken")?.value
-  if (!accessToken) throw new Error("No access token")
-
+  // TODO: close db connection when request is done
   const db = await connectDb()
 
-  await db.authenticate(accessToken)
+  try {
+    await authenticateConnection(db, requireAccessToken())
+  } catch {
+    await db.close()
+  }
 
   const streamController = new TransformStream()
 
@@ -38,9 +41,11 @@ export const GET = async (
 
   req.signal.onabort = async () => {
     await db.kill(uuid)
+    await db.close()
   }
   process.on("exit", async () => {
     await db.kill(uuid)
+    await db.close()
   })
 
   return new Response(streamController.readable)

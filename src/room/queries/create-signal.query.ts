@@ -1,3 +1,4 @@
+import {authenticateConnection} from "@/database/lib/authenticate-connection"
 import {connectDb} from "@/database/lib/connect-db"
 import {Signal, SignalVariant} from "@/room/interfaces/signal.interface"
 
@@ -12,10 +13,11 @@ export const queryCreateSignal = async ({
 }): Promise<Signal> => {
   const db = await connectDb()
 
-  await db.authenticate(accessToken)
+  try {
+    await authenticateConnection(db, accessToken)
 
-  const [[signal]] = await db.query<Array<Array<Signal & Record<any, any>>>>(
-    `
+    const [[signal]] = await db.query<Array<Array<Signal & Record<any, any>>>>(
+      `
       CREATE signal CONTENT {
         type: $type,
         room: $roomId,
@@ -23,8 +25,11 @@ export const queryCreateSignal = async ({
         peerId: rand::uuid::v4(),
       };
       `,
-    {roomId, type}
-  )
+      {roomId, type}
+    )
 
-  return signal
+    return signal
+  } finally {
+    await db.close()
+  }
 }

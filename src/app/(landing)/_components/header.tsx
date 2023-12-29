@@ -4,6 +4,7 @@ import Link from "next/link"
 import React, {ReactNode} from "react"
 
 import {LogoutButton} from "@/app/(landing)/_components/logout"
+import {getUserAction} from "@/app/_actions/get-user.action"
 import {Button} from "@/app/_components/button"
 import {
   AiOutlineGift,
@@ -18,12 +19,11 @@ import {
 } from "@/app/_components/icons"
 import {cn} from "@/app/_lib/cn"
 import {User} from "@/user/interfaces/user.interface"
-import {queryUser} from "@/user/queries/user.query"
 
 export const Header = async () => {
   const accessToken = cookies().get("accessToken")?.value
 
-  const user = accessToken ? await queryUser(accessToken) : null
+  const user = accessToken ? await getUserAction() : null
 
   return (
     <header className={cn(["flex", "text-sm", "py-10"])}>
