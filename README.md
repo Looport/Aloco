@@ -1,36 +1,87 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<h1 align="center">
+    Aloco 💘 Word Wide Video Chat
+</h1>
 
-## Getting Started
+Our goal is to build application that will organize peoples in the web in way of connecting their minds.
+We tend to improve user experience by using the newest AI technologies and modern design
+that will create safe and creative environment.
 
-First, run the development server:
+<p>
+    <img src="https://cdn.dribbble.com/users/1925451/screenshots/6618101/image_4x.jpg?resize=1600x1200&vertical=center" alt="Icebreaker">
+</p>
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# Stack
+
+**Core:** [Next.js](https://nextjs.org), [SurrealDB](https://surrealdb.com/), [WebRTC](https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API) 💕 [Peer.js](https://peerjs.com/)
+
+**Deployment:** [Docker](https://www.docker.com) 💕 [Docker Compose](https://docs.docker.com/compose/)
+
+**Testing:** [Node Test Runner](https://nodejs.org/api/test.html) 💕 [Node Assertions](https://nodejs.org/api/assert.html), [Playwright](https://playwright.dev/docs/intro)
+
+**CI/CD:** [GitHub Actions](https://docs.github.com/en/actions), [Digital Ocean](https://www.digitalocean.com)
+
+# Starting Point
+
+The First step, as always, is to install dependencies.
+Run these commands one by one in your terminal.
+
+```shell
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+brew install nvm
+nvm install 21
+
+npm i
+```
+<br />
+The second step is to install environment services with which the application will interact.
+
+```shell
+# Install Docker and Docker Compose where our services will be run
+brew install --cask docker && brew install docker-compose
+
+# Deploy Surreal DB in development mode
+make deploy-dev-surrealdb
+
+# Create environment file
+cp .env.example .env.local
+
+# Run migration that will prepare database
+make db-build
+make db-migrate
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+<br />
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+The last step is to start the application in development mode.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+```shell
+npm run dev
+```
 
-## Learn More
+# Deployment
 
-To learn more about Next.js, take a look at the following resources:
+```shell
+# Build and Push docker images
+make build && make push
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# Connect to the server via ssh or any other way that recommended by your hosting provider
+ssh root@<server_ip>
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+# Clone repository
+git clone <repository>
 
-## Deploy on Vercel
+# Pull and Run docker images
+make deploy-prod
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+# Contribution
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+All feature tasks are described in [Issues](https://github.com/Looport/Aloco/issues) and
+grouped in [Milestones](https://github.com/Looport/Aloco/milestones).
+For any help or information, contact with our team.
+
+## Links
+
+- [Application Concept (Draft)](https://dormammun.notion.site/Product-Concept-01c721c64cbc4060aa768d5fb97faeb4?pvs=4)
+- [Design](https://www.figma.com/file/kjHb3gcPDZ9wHmQle0474n/Untitled?type=design&node-id=0-1&mode=design&t=xiiu4bSlGt9aF3g5-0)

@@ -3,7 +3,7 @@ import {redirect} from "next/navigation"
 import {DbAuthException} from "@/database/lib/authenticate-connection"
 import {RequireAccessTokenException} from "@/web/auth/lib/require-access-token"
 
-export const catchAuthException = async (callback: () => Promise<any>) => {
+export const catchAuthException = async <T>(callback: () => Promise<T>) => {
   try {
     return await callback()
   } catch (error) {
