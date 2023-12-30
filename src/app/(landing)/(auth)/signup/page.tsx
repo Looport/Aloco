@@ -25,13 +25,11 @@ export default function SignUpPage() {
   }
 
   return (
-    <main>
-      <AuthForm
-        header={<Header />}
-        onSubmit={handleSubmit}
-        buttonLabel="Register"
-      />
-    </main>
+    <AuthForm
+      header={<Header />}
+      onSubmit={handleSubmit}
+      buttonLabel="Register"
+    />
   )
 }
 

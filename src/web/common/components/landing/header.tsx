@@ -30,7 +30,7 @@ export const Header = async () => {
       <nav
         className={cn(["w-full", "flex", "items-center", "justify-between"])}
       >
-        <Link href="/public">
+        <Link href="/">
           <Image
             width={130}
             height={35}

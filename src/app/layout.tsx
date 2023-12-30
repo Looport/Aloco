@@ -6,6 +6,7 @@ import {Inter} from "next/font/google"
 import {ReactNode} from "react"
 
 import {PrelineScript} from "@/web/common/components/preline-script"
+import {cn} from "@/web/common/utils/cn"
 
 const inter = Inter({subsets: ["latin"]})
 
@@ -16,8 +17,11 @@ export const metadata: Metadata = {
 
 export default function RootLayout({children}: {children: ReactNode}) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
+    <html
+      lang="en"
+      className={cn(["h-full overflow-auto"])}
+    >
+      <body className={cn([inter.className, "h-full"])}>{children}</body>
       <PrelineScript />
     </html>
   )

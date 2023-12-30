@@ -7,8 +7,13 @@ import {cn} from "@/web/common/utils/cn"
 
 export default function LandingLayout({children}: {children: ReactNode}) {
   return (
-    <div className={cn(["landing-container text-white/80"])}>
-      <div className={cn(["max-w-[1100px]", "mx-auto"])}>
+    <div
+      className={cn([
+        "landing-container text-white/80 h-full overflow-auto",
+        "flex flex-col",
+      ])}
+    >
+      <div className={cn(["w-[1100px]", "mx-auto", "flex flex-col flex-grow"])}>
         <Header />
         {children}
       </div>

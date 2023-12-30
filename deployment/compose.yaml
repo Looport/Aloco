@@ -34,6 +34,7 @@ services:
 
   proxy:
     build: ./proxy
+    platform: linux/amd64
     image: dormammun/aloco-proxy:latest
     container_name: aloco-proxy
     depends_on:

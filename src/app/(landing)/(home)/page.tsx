@@ -10,7 +10,14 @@ export default function HomePage() {
   return (
     <>
       <CreateRoomButton />
-      <main className={cn(["grid", "grid-cols-2 grid-rows-5", "gap-4"])}>
+      <main
+        className={cn([
+          "grid",
+          "grid-cols-2 grid-rows-5",
+          "gap-4",
+          "flex-grow-1",
+        ])}
+      >
         <section className={cn(["row-span-3"])}>
           <ExploreWorldCard />
         </section>
