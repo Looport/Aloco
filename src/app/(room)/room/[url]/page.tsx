@@ -1,14 +1,19 @@
+import {Metadata} from "next"
+
 import {cn} from "@/web/common/utils/cn"
 import {getMessagesAction} from "@/web/room/actions/get-messages.action"
 import {getRoomAction} from "@/web/room/actions/get-room-action"
+import {Chat} from "@/web/room/components/chat"
+import {Conference} from "@/web/room/components/conference"
 import {getUserAction} from "@/web/user/actions/get-user.action"
-
-import {Chat} from "../../../../web/room/components/chat"
-import {Conference} from "../../../../web/room/components/conference"
 
 interface Props {
   params: {url: string}
 }
+
+export const generateMetadata = ({params}: Props): Metadata => ({
+  title: params.url,
+})
 
 export default async function RoomPage({params: {url}}: Props) {
   const room = await getRoomAction(url)
