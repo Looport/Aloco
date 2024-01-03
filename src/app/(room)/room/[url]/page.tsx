@@ -5,7 +5,7 @@ import {getMessagesAction} from "@/web/room/actions/get-messages.action"
 import {getRoomAction} from "@/web/room/actions/get-room-action"
 import {Chat} from "@/web/room/components/chat"
 import {Conference} from "@/web/room/components/conference"
-import {getUserAction} from "@/web/user/actions/get-user.action"
+import {getAuthUserAction} from "@/web/user/actions/get-auth-user.action"
 
 interface Props {
   params: {url: string}
@@ -19,7 +19,7 @@ export default async function RoomPage({params: {url}}: Props) {
   const room = await getRoomAction(url)
 
   const messages = await getMessagesAction(room.id)
-  const user = await getUserAction()
+  const user = await getAuthUserAction()
 
   return (
     <main

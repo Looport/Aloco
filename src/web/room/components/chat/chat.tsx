@@ -19,9 +19,13 @@ export const Chat = ({
   const handleMessageForm = async (formData: FormData) => {
     "use server"
 
+    const text = formData.get("message") as string
+
+    if (!text?.length) return
+
     await createMessageAction({
       roomId: room.id,
-      text: formData.get("message") as string,
+      text,
     })
   }
 

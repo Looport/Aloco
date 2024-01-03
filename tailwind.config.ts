@@ -5,6 +5,8 @@ const config: Config = {
   plugins: [
     // eslint-disable-next-line import/no-commonjs
     require("preline/plugin"),
+    // eslint-disable-next-line import/no-commonjs
+    require("@tailwindcss/forms"),
   ],
 }
 export default config

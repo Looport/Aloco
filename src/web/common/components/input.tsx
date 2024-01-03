@@ -9,12 +9,14 @@ interface InputProps
   > {
   icon?: ReactNode
   iconPosition?: "start" | "end"
+  error?: string
 }
 
 export const Input = ({
   className,
   icon,
   iconPosition = "start",
+  error,
   ...props
 }: InputProps) => {
   let inputWithIconClasses: string[] = []
@@ -31,23 +33,28 @@ export const Input = ({
   }
 
   return (
-    <div className={cn(["relative"])}>
-      <input
-        className={cn([
-          "peer py-3 px-4 block w-full z-0 cursor-pointer",
-          "bg-white/10 border-transparent rounded-full",
-          "text-sm",
-          ...inputWithIconClasses,
-          className ?? "",
-        ])}
-        {...props}
-      />
-      {icon && (
-        <div
-          className={cn(["absolute flex items-center z-10", ...iconClasses])}
-        >
-          {icon}
-        </div>
+    <div>
+      <div className={cn(["relative"])}>
+        <input
+          className={cn([
+            "peer py-3 px-4 block w-full z-0 cursor-pointer",
+            "bg-white/10 border-transparent rounded-full",
+            "text-sm",
+            ...inputWithIconClasses,
+            className ?? "",
+          ])}
+          {...props}
+        />
+        {icon && (
+          <div
+            className={cn(["absolute flex items-center z-10", ...iconClasses])}
+          >
+            {icon}
+          </div>
+        )}
+      </div>
+      {error && (
+        <p className={cn(["text-xs text-left text-red-600 mt-2"])}>{error}</p>
       )}
     </div>
   )

@@ -18,12 +18,12 @@ import {
 } from "@/web/common/components/icons"
 import {LogoutButton} from "@/web/common/components/landing/logout"
 import {cn} from "@/web/common/utils/cn"
-import {getUserAction} from "@/web/user/actions/get-user.action"
+import {getAuthUserAction} from "@/web/user/actions/get-auth-user.action"
 
 export const Header = async () => {
   const accessToken = cookies().get("accessToken")?.value
 
-  const user = accessToken ? await getUserAction() : null
+  const user = accessToken ? await getAuthUserAction() : null
 
   return (
     <header className={cn(["flex", "text-sm", "py-10"])}>
