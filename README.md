@@ -72,7 +72,7 @@ ssh root@<server_ip>
 git clone <repository>
 
 # Pull and Run docker images
-make deploy-prod
+make pull && make deploy-prod
 ```
 
 # Contribution

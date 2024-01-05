@@ -28,7 +28,7 @@ export const MessageList = ({
   return (
     <ul
       className={cn([
-        "overflow-y-scroll h-full pace-y-5 flex flex-col gap-4 mb-10",
+        "overflow-y-auto h-full pace-y-5 flex flex-col gap-4 mb-10",
       ])}
       ref={listRef}
     >

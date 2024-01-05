@@ -2,7 +2,7 @@
 
 import {ErrorPage} from "@/common/components/error-page"
 
-export default function LandingErrorPage({
+export default function Error({
   error,
   reset,
 }: {

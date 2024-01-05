@@ -1,1 +1,2 @@
-export {Chat} from "./chat"
+export {Messages} from "./messages"
+export {MessageForm} from "./message-form"

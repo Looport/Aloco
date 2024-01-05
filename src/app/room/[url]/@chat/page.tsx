@@ -1,21 +1,23 @@
-import {Message} from "@/room/interfaces/message.interface"
-import {Room} from "@/room/interfaces/room.interface"
-import {User} from "@/user/interfaces/user.interface"
+import {Suspense} from "react"
+
 import {Card} from "@/web/common/components/home/card"
 import {cn} from "@/web/common/utils/cn"
 import {createMessageAction} from "@/web/room/actions/create-message.action"
-import {MessageForm} from "@/web/room/components/chat/message-form"
-import {Messages} from "@/web/room/components/chat/messages"
+import {getMessagesAction} from "@/web/room/actions/get-messages.action"
+import {getRoomAction} from "@/web/room/actions/get-room-action"
+import {MessageForm, Messages} from "@/web/room/components/chat"
+import {getAuthUserAction} from "@/web/user/actions/get-auth-user.action"
 
-export const Chat = ({
-  room,
-  user,
-  defaultMessages,
-}: {
-  user: User
-  room: Room
-  defaultMessages: Message[]
-}) => {
+interface Props {
+  params: {url: string}
+}
+
+export default async function ChatPage({params: {url}}: Props) {
+  const room = await getRoomAction(url)
+  const messages = await getMessagesAction(room.id)
+
+  const user = await getAuthUserAction()
+
   const handleMessageForm = async (formData: FormData) => {
     "use server"
 
@@ -39,7 +41,7 @@ export const Chat = ({
       <Messages
         user={user}
         roomId={room.id}
-        defaultMessages={defaultMessages}
+        defaultMessages={messages}
       />
       <MessageForm onSubmit={handleMessageForm} />
     </Card>

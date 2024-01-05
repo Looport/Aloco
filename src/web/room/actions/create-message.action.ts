@@ -1,3 +1,5 @@
+"use server"
+
 import {Message} from "@/room/interfaces/message.interface"
 import {queryCreateMessage} from "@/room/queries/create-message.query"
 import {catchAuthException} from "@/web/auth/lib/catch-auth-exeption"

@@ -8,28 +8,26 @@ export const MessageForm = ({
 }: {
   onSubmit: (formData: FormData) => void
 }) => (
-  <article>
-    <form
-      action={onSubmit}
-      autoComplete="off"
-    >
-      <Input
-        name="message"
-        placeholder="Type message..."
-        iconPosition="end"
-        className={cn(["py-5 !px-8"])}
-        icon={
-          <Button
-            type="text"
-            icon={
-              <IconProvider value={{size: "1.2rem"}}>
-                <VscSend />
-              </IconProvider>
-            }
-            htmlType="submit"
-          />
-        }
-      />
-    </form>
-  </article>
+  <form
+    action={onSubmit}
+    autoComplete="off"
+  >
+    <Input
+      name="message"
+      placeholder="Type message..."
+      iconPosition="end"
+      className={cn(["py-5 !px-8"])}
+      icon={
+        <Button
+          type="text"
+          icon={
+            <IconProvider value={{size: "1.2rem"}}>
+              <VscSend />
+            </IconProvider>
+          }
+          htmlType="submit"
+        />
+      }
+    />
+  </form>
 )
