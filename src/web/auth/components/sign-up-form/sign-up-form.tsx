@@ -5,14 +5,21 @@ import {handleSignUpAction} from "@/web/auth/components/sign-up-form/handle-sign
 import {CardTitle} from "@/web/common/components/home/card"
 import {cn} from "@/web/common/utils/cn"
 
-export const SignUpForm = ({signInLink}: {signInLink?: string}) => (
-  <AuthForm
-    header={<Header signInLink={signInLink} />}
-    onSubmit={handleSignUpAction}
-    buttonLabel="Register"
-  />
-)
+export const SignUpForm = ({signInLink}: {signInLink?: string}) => {
+  const handleSubmit = async (__: any, formData: FormData) => {
+    "use server"
 
+    return await handleSignUpAction(formData)
+  }
+
+  return (
+    <AuthForm
+      header={<Header signInLink={signInLink} />}
+      onSubmit={handleSubmit}
+      buttonLabel="Register"
+    />
+  )
+}
 const Header = ({signInLink = "/signin"}: {signInLink?: string}) => (
   <div className={cn(["text-sm text-white/60 mb-5"])}>
     <CardTitle
