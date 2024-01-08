@@ -11,13 +11,13 @@ export default function LandingErrorPage({
   reset: () => void
 }) {
   return (
-    <div
-      className={cn(["flex justify-center items-center h-full w-2/3 mx-auto"])}
-    >
-      <ErrorPage
-        error={error}
-        reset={reset}
-      />
+    <div className={cn(["flex justify-center items-center h-full"])}>
+      <div className={cn(["h-1/3 w-1/2"])}>
+        <ErrorPage
+          error={error}
+          reset={reset}
+        />
+      </div>
     </div>
   )
 }

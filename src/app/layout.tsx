@@ -1,4 +1,3 @@
-import "@/web/common/styles/global.css"
 import "@/web/common/styles/tailwind.css"
 
 import type {Metadata} from "next"
@@ -20,7 +19,7 @@ export default function RootLayout({children}: {children: ReactNode}) {
   return (
     <html
       lang="en"
-      className={cn(["h-full overflow-auto"])}
+      className={cn(["h-full"])}
     >
       <body className={cn([inter.className, "h-full"])}>{children}</body>
       <PrelineScript />

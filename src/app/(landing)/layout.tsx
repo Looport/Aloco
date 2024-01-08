@@ -13,12 +13,10 @@ export default function LandingLayout({children}: {children: ReactNode}) {
         "flex flex-col",
       ])}
     >
-      <main
-        className={cn(["w-[1100px]", "mx-auto", "flex flex-col flex-grow"])}
-      >
+      <div className={cn(["w-[1100px]", "mx-auto", "flex flex-col flex-grow"])}>
         <Header />
-        {children}
-      </main>
+        <main className={cn(["flex-grow"])}>{children}</main>
+      </div>
       <Footer />
     </div>
   )

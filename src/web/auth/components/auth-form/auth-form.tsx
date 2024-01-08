@@ -38,7 +38,7 @@ export const AuthForm = ({header, onSubmit, buttonLabel}: Props) => {
     <Card
       rootClassName={cn([
         "relative py-[4rem]",
-        "h-[-webkit-fill-available]",
+        "h-full",
 
         "before:absolute before:top-[7rem] before:right-[-4rem]",
         "before:content-[' '] before:w-[8rem] before:h-[8rem]",

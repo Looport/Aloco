@@ -54,7 +54,7 @@ export const ExploreWorldCard = () => (
         dolor elit. In ornare posuere.
       </CardDescription>
     </header>
-    <div className={cn(["h-[300px] relative mb-5"])}>
+    <div className={cn(["h-[300px] relative mb-10"])}>
       <Image
         fill
         className={cn(["object-cover"])}
@@ -66,7 +66,7 @@ export const ExploreWorldCard = () => (
       className={cn(["flex flex-col gap-[0.5rem] justify-center items-center"])}
     >
       <Button
-        className={cn(["!px-10"])}
+        className={cn(["!px-10 mb-2"])}
         icon={
           <IconProvider value={{size: "1.25rem"}}>
             <BiMapAlt />

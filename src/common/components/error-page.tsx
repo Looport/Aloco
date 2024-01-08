@@ -26,9 +26,15 @@ export const ErrorPage = ({
     <Card
       rootClassName={cn([
         "flex-grow flex flex-col align-center justify-center",
+        "h-full",
       ])}
     >
-      <div className={cn(["text-center py-10 px-4 sm:px-6 lg:px-8"])}>
+      <div
+        className={cn([
+          "text-center py-10 px-4 h-full",
+          "flex flex-col align-center justify-center",
+        ])}
+      >
         <h1 className={cn(["block mb-10", "text-7xl font-bold text-white/80"])}>
           {title ?? "Error"}
         </h1>

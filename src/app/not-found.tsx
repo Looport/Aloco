@@ -15,7 +15,7 @@ export default function NotFoundPage() {
         "flex justify-center items-center h-full",
       ])}
     >
-      <div className={cn(["w-2/3 mx-auto"])}>
+      <div className={cn(["h-1/3 w-1/2"])}>
         <ErrorPage
           title={"404"}
           error={error}

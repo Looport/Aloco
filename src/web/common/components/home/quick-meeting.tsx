@@ -45,12 +45,7 @@ export const QuickMeeting = () => (
         With AI-powered features and useful built-in Utilities, our app will
         become an indispensable companion for any type of conversation.
       </CardDescription>
-      <div
-        className={cn([
-          "flex sm:flex-row flex-col items-center gap-2.5",
-          "mb-5",
-        ])}
-      >
+      <div className={cn(["flex items-center gap-2.5", "mb-5"])}>
         <Button
           href="/signup"
           icon={
@@ -101,7 +96,7 @@ export const QuickMeeting = () => (
       </div>
       <div className={cn(["flex flex-col"])}>
         <span className={cn(["font-extrabold"])}>+5M</span>
-        <span className={cn(["text-white/60"])}>Worldwide Users</span>
+        <span className={cn(["text-white/60 text-sm"])}>Worldwide Users</span>
       </div>
     </footer>
   </Card>
