@@ -5,6 +5,7 @@ import {ReactNode} from "react"
 
 import {cn} from "@/web/common/utils/cn"
 import {getRoomAction} from "@/web/room/actions/get-room-action"
+import {Sidebar} from "@/web/room/components/sidebar"
 
 interface Props {
   params: {url: string}
@@ -44,9 +45,13 @@ export default async function RoomUrlLayout({
     <div
       className={cn([
         "text-white/80 h-full",
-        "grid grid-cols-[1fr_minmax(0,440px)]",
+        "grid grid-cols-[50px_1fr_minmax(0,440px)]",
+        "pl-12",
       ])}
     >
+      <div className={cn(["py-10"])}>
+        <Sidebar />
+      </div>
       {conference}
       {chat}
     </div>

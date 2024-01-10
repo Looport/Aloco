@@ -9,12 +9,12 @@ import {
   AiOutlineGift,
   AiOutlineSchedule,
   BiUser,
-  BsFastForward,
   BsTelephoneOutbound,
   FiCalendar,
   FiMap,
   IconProvider,
   LuSettings,
+  TbPlayerTrackNext,
 } from "@/web/common/components/icons"
 import {LogoutButton} from "@/web/common/components/landing/logout"
 import {cn} from "@/web/common/utils/cn"
@@ -107,7 +107,7 @@ const AuthNav = () => (
       type="link"
       icon={
         <IconProvider value={{size: "1.2rem"}}>
-          <BsFastForward />
+          <TbPlayerTrackNext />
         </IconProvider>
       }
     >
